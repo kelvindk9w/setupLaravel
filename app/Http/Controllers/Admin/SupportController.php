@@ -19,9 +19,9 @@ class SupportController extends Controller
     public function index(Request $request)
     {
         $supports = $this->service->paginate(
-            page: $request->get('page', 1),
-            totalPerPage: $request->get('per_page', 1),
-            filter: $request->filter,
+            page        : $request->get('page', 1),
+            totalPerPage: $request->get('per_page', 15),
+            filter      : $request->filter,
         );
 
         $filters = ['filter' => $request->get('filter', '')];
@@ -46,7 +46,7 @@ class SupportController extends Controller
         // Support::find($id) = Vai direto na coluna ID
         // Support::where('coluna', 'condicional (se for =, só n colocar nada)', 'valor a buscar') -> first() pegar o 1º resultado
 
-        if(!$infoSupport = $this->service->findOne($id)) {
+        if (!$infoSupport = $this->service->findOne($id)) {
             return back();
         }
 
@@ -55,7 +55,7 @@ class SupportController extends Controller
 
     public function edit(string $id)
     {
-        if(!$infoSupport = $this->service->findOne($id)) {
+        if (!$infoSupport = $this->service->findOne($id)) {
             return back();
         }
 
